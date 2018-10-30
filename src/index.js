@@ -2,16 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-
 import MainPage from './Components/MainPage/MainPage.container';
 
-import board from './GameLogic/Logic';
-board.startGame(5, 2, 2);
-//console.log(board)
+
 
 
 ReactDOM.render(
-    <MainPage board={board}/>,
+    <MainPage/>,
     document.getElementById('root')
 );
 

@@ -1,18 +1,19 @@
 import React from 'react';
 
-import MainPage from './MainPage.component'
+import MainPage from './MainPage.component';
+import GameLogic from '../../GameLogic/Logic';
 
 
 class MainPageContainer extends React.Component {
     constructor(props){
         super(props);
-        //props.gameboard
         this.state = {
             width: 10,
             height: 10,
             mines: 10,
+            GameLogic: GameLogic
         }
-        props.board.startGame(10,10,10);
+        GameLogic.startGame(10,10,10)
     }
 
     onOptionChange = (key, value, min, max) => {
@@ -37,16 +38,17 @@ class MainPageContainer extends React.Component {
     }
 
     onNewGame = () => {
-        const {width, height, mines} = this.state;
+        const {width, height, mines, GameLogic} = this.state;
         //TODO: add validation not empty
-        this.props.board.startGame(width, height, mines);
+        GameLogic.startGame(width, height, mines);
     }
 
     render() {
-        console.log('rerender')
+        console.log('rerender', this.state.GameLogic)
         const {width, height, mines} = this.state;
         return(
-            <MainPage onNewGame={this.onNewGame}
+            <MainPage board={this.state.GameLogic.boardData.board}
+                      onNewGame={this.onNewGame}
                       width={width}
                       onWidthChange={(value)=>this.onOptionChange('width', value, 1, 300)}
                       height={height}

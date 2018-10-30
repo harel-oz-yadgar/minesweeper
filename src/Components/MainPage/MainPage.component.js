@@ -1,6 +1,9 @@
 import React from 'react';
 
-const MainPage = ({onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange}) => {
+import Board from '../Board/Board.component';
+
+
+const MainPage = ({board, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange}) => {
     const renderTextArea = (text, onChange, value) => {
         return (
             <div>
@@ -32,7 +35,7 @@ const MainPage = ({onNewGame, width, onWidthChange, height, onHeightChange, mine
                 </div>
             </div>
             <div>
-                this is the game board
+                <Board board={board}/>
             </div>
         </div>
     )
