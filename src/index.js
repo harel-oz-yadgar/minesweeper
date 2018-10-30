@@ -11,7 +11,7 @@ board.startGame(5, 2, 2);
 
 
 ReactDOM.render(
-    <MainPage />,
+    <MainPage board={board}/>,
     document.getElementById('root')
 );
 

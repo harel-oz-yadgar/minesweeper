@@ -36,11 +36,13 @@ function initTile(){
 
 var GameBoard = {
     startGame: function(width, height, mines) {
+        console.log("new game")
         this.options = initOptions(width, height, mines);
         this.board = initBoard(width, height, mines);
         this.board.isMineClicked = false;
         this.populateMines();
         this.markNumOfMines();
+        console.log(this)
     },
 
     populateMines: function(){
@@ -113,6 +115,12 @@ var GameBoard = {
     },
 
 
+}
+
+const Logic = {
+    startGame: function(){
+        return GameBoard
+    },
 }
 
 export default GameBoard;
