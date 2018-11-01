@@ -1,0 +1,30 @@
+.command-panel{
+
+  .game-options{
+    display: flex;
+    margin-bottom: 10px;
+
+    .option{
+      width: 33%;
+      display: flex;
+      justify-content: center;
+
+      .text{
+        padding-right: 10px;
+      }
+      .input{
+        width: 30px;
+      }
+    }
+  }
+
+  .new-game{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .new-game-btn{
+
+    }
+  }
+}

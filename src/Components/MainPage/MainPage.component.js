@@ -1,14 +1,16 @@
 import React from 'react';
 
 import Board from '../Board/Board.component';
+import './MainPage.scss';
 
 
 const MainPage = ({board, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange}) => {
     const renderTextArea = (text, onChange, value) => {
         return (
-            <div>
-                {text}
+            <div className='option'>
+                <span className='text'>{text}:</span>
                 <input type="text"
+                       className='input'
                        name={text}
                        value={value}
                        onChange={val => onChange(val.target.value)}
@@ -20,13 +22,13 @@ const MainPage = ({board, onNewGame, width, onWidthChange, height, onHeightChang
 
     return (
         <div>
-            <div>
-                <div>
+            <div className='command-panel'>
+                <div className='game-options'>
                     {renderTextArea('width', onWidthChange, width)}
                     {renderTextArea('height', onHeightChange, height)}
                     {renderTextArea('mines', onMinesChange, mines)}
                 </div>
-                <div>
+                <div className='new-game'>
                     <input type="button"
                            className="new-game-btn"
                            value="New Game"
