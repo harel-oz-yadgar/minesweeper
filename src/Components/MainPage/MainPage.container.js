@@ -27,11 +27,11 @@ class MainPageContainer extends React.Component {
         }
         let num = parseInt(value);
         if(num<min){
-            alert(`Invalid value: ${value} less than min value`);
+            alert(`Invalid value: ${value}, value cannot be less than min value (${min})`);
             return;
         }
         if(num>max){
-            alert(`Invalid value: ${value} more than max value`);
+            alert(`Invalid value: ${value}, value cannot be more than max value (${max})`);
             return;
         }
         this.setState({[key]: num});

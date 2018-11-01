@@ -1,5 +1,10 @@
 import React from 'react';
 
+import dangerFlag from '../../Resources/danger-flag.png';
+import bomb from '../../Resources/bomb.jpg';
+import './Board.scss'
+
+
 const Board = ({board, onTileClick}) => {
 
     console.log("look at me" , board)
@@ -31,16 +36,28 @@ const Board = ({board, onTileClick}) => {
     };
 
     const renderTile = (tile, onTileClick) => {
+        console.log(tile)
         return (
-            <div>
-                tile
-            </div>
+            <button className='tile'>
+                {
+                    !tile.isVisiable ? '' :
+                        tile.isFlagged ? (
+                            <img src={dangerFlag} alt='F' />
+                        ) : (
+                            tile.isMine ? (
+                                <img src={bomb} alt='*' />
+                            ) : (
+                                tile.numOfMines===0 ? '' : tile.numOfMines
+                            )
+                        )
+                }
+            </button>
         )
     }
 
     return (
         <div>
-            <table>
+            <table className='table'>
                 {renderTableBody()}
             </table>
         </div>

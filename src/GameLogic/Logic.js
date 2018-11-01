@@ -91,7 +91,7 @@ var GameBoard = {
             return;
         }
         this.boardData.tilesLeft--;
-        if(this.boardData.board[row][col].numOfMines==0) {
+        if(this.boardData.board[row][col].numOfMines === 0) {
             for (let i = row - 1; i <= row + 1; i++) {
                 for (let j = col - 1; j <= col + 1; j++) {
                     if (i >= 0 && i < this.options.height && j >= 0 && j < this.options.width) {
