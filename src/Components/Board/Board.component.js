@@ -24,9 +24,9 @@ const Board = ({board, onTileClick}) => {
                             //<div key={`tile#r${rowIndex}c${colIndex}`}>
                                 <Tile i={tile.i}
                                       j={tile.j}
-                                      onClick={()=>onTileClick(tile.i, tile.j)}
+                                      onClick={(e)=>onTileClick(tile.i, tile.j, e)}
                                       isVisiable={tile.isVisiable}
-                                      isFlagged={tile.isMine}
+                                      isFlagged={tile.isFlagged}
                                       isMine={tile.isMine}
                                       numOfMines={tile.numOfMines}
                                       key={`tile#r${rowIndex}c${colIndex}`}

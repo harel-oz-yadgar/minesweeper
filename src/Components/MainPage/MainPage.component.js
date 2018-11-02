@@ -4,7 +4,7 @@ import Board from '../Board/Board.component';
 import './MainPage.scss';
 
 
-const MainPage = ({board, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange, onTileClick}) => {
+const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange, onTileClick}) => {
     const renderTextArea = (text, onChange, value) => {
         return (
             <div className='option'>
@@ -35,6 +35,9 @@ const MainPage = ({board, onNewGame, width, onWidthChange, height, onHeightChang
                            onClick={onNewGame}
                     />
                 </div>
+            </div>
+            <div>
+                Flags left: {flagsLeft}
             </div>
             <div>
                 <Board board={board}

@@ -10,16 +10,18 @@ const Tile = ({i, j, isVisiable, isFlagged, isMine, numOfMines, onClick}) => {
                 disabled={isVisiable}
                 onClick={onClick}>
             {
-                !isVisiable ? '' :
-                    isFlagged ? (
-                        <img src={dangerFlag} alt='F'/>
-                    ) : (
-                        isMine ? (
-                            <img src={bomb} alt='*'/>
-                        ) : (
-                            numOfMines === 0 ? '' : numOfMines
+                isFlagged ? (
+                    <img src={dangerFlag} alt='F'/>
+                ) : (
+                    !isVisiable ? ''
+                        : (
+                            isMine ? (
+                                <img src={bomb} alt='*'/>
+                            ) : (
+                                numOfMines === 0 ? '' : numOfMines
+                            )
                         )
-                    )
+                )
             }
         </button>
     )

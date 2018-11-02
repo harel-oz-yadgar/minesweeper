@@ -14,7 +14,6 @@ class MainPageContainer extends React.Component {
             gameboard: new GameBoard(10,10,10),
             inProgress: true,
         }
-        //GameLogic.startGame(10,10,10)
     }
 
     onOptionChange = (key, value, min, max) => {
@@ -39,7 +38,7 @@ class MainPageContainer extends React.Component {
     }
 
     onNewGame = () => {
-        const {width, height, mines, gameboard} = this.state;
+        const {width, height, mines} = this.state;
         //TODO: add validation not empty
         this.setState({
             gameboard: new GameBoard(width, height, mines),
@@ -47,20 +46,27 @@ class MainPageContainer extends React.Component {
         })
     }
 
-    onTileClick = (i, j) => {
-        if(this.state.inProgress) {
-            const {gameboard} = this.state;
-            gameboard.clickTile(i, j);
-            this.forceUpdate();
+    onTileClick = (i, j, e) => {
+        if (!this.state.inProgress) {//game already ended
+            return;
+        }
 
-            if(gameboard.boardData.isMineClicked){
-                setTimeout(()=>alert('You lose, better luck next time'),0);
-                this.setState({inProgress: false});
-            }
-            else if(gameboard.options.mines === gameboard.boardData.tilesLeft){
-                setTimeout(()=>alert('Congratulations you win'),0);
-                this.setState({inProgress: false})
-            }
+        const {gameboard} = this.state;
+        if (e.shiftKey) {//flag
+            gameboard.flagTile(i, j);
+        }
+        else {
+            gameboard.clickTile(i, j);
+        }
+
+        this.forceUpdate();
+        if (gameboard.boardData.isMineClicked) {
+            setTimeout(() => alert('You lose, better luck next time'), 0);
+            this.setState({inProgress: false});
+        }
+        else if (gameboard.options.mines === gameboard.boardData.tilesLeft) {
+            setTimeout(() => alert('Congratulations you win'), 0);
+            this.setState({inProgress: false})
         }
     }
 
@@ -68,6 +74,7 @@ class MainPageContainer extends React.Component {
         const {width, height, mines, gameboard} = this.state;
         return(
             <MainPage board={gameboard.boardData.board}
+                      flagsLeft={gameboard.boardData.flagsLeft}
                       onNewGame={this.onNewGame}
                       width={width}
                       onWidthChange={(value)=>this.onOptionChange('width', value, 1, 300)}
