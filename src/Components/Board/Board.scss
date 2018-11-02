@@ -2,27 +2,31 @@
   display: flex;
   justify-content: center;
 
-  .gameboard{
-    width: 100%;
-
+  .gameboard {
+    //width: 100%;
+    padding: 3px;
     border: 2px solid black;
     border-radius: 10px;
     background-color: lightgrey;
 
-    .tile{
-      font-weight: bold;
-      padding: 0px;
-      width: 30px;
-      height: 30px;
+    .row {
+      display: flex;
 
-      &.clicked{
-        color: black;
-        background-color: lightgrey;
-      }
+      .tile {
+        font-weight: bold;
+        padding: 0px;
+        width: 30px;
+        height: 30px;
 
-      img{
-        width: 100%;
-        height: 100%;
+        &.clicked {
+          color: black;
+          background-color: lightgrey;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

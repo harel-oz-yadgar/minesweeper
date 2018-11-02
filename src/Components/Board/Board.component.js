@@ -7,6 +7,53 @@ import './Board.scss';
 const Board = ({board, onTileClick}) => {
     const renderTableBody = () => {
         return (
+            <React.Fragments>
+            {
+                board.map((row, index) => renderTableRow(row, index))
+            }
+            </React.Fragments>
+        );
+    };
+
+    const renderTableRow = (row, rowIndex) => {
+        return (
+            <div key={`row#${rowIndex}`} className='row'>
+                {
+                    row.map((tile, colIndex) => {
+                        return (
+                            //<div key={`tile#r${rowIndex}c${colIndex}`}>
+                                <Tile i={tile.i}
+                                      j={tile.j}
+                                      onClick={()=>onTileClick(tile.i, tile.j)}
+                                      isVisiable={tile.isVisiable}
+                                      isFlagged={tile.isMine}
+                                      isMine={tile.isMine}
+                                      numOfMines={tile.numOfMines}
+                                      key={`tile#r${rowIndex}c${colIndex}`}
+                                />
+                            //</div>
+                        )
+                    })
+                }
+            </div>
+        )
+    };
+
+
+
+    return (
+        <div className='gameboard-container'>
+            <div className='gameboard'>
+                {board.map((row, index) => renderTableRow(row, index))}
+            </div>
+        </div>
+    )
+}
+
+/*
+const Board = ({board, onTileClick}) => {
+    const renderTableBody = () => {
+        return (
             <tbody>
             {
                 board.map((row, index) => renderTableRow(row, index))
@@ -48,5 +95,6 @@ const Board = ({board, onTileClick}) => {
         </div>
     )
 }
+ */
 
 export default Board;
