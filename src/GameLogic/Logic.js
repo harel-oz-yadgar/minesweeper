@@ -134,6 +134,13 @@ function GameBoard(width, height, mines){
         this.boardData.board[row][col].isVisiable = true;
         if(this.boardData.board[row][col].isMine){
             this.boardData.isMineClicked = true;
+            for(let i=0; i<this.options.height; i++){
+                for(let j=0; j<this.options.width; j++){
+                    if(this.boardData.board[i][j].isMine){
+                        this.boardData.board[i][j].isVisiable = true;
+                    }
+                }
+            }
             return;
         }
         this.boardData.tilesLeft--;

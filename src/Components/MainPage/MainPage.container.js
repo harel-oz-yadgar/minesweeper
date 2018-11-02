@@ -12,6 +12,7 @@ class MainPageContainer extends React.Component {
             height: 10,
             mines: 10,
             gameboard: new GameBoard(10,10,10),
+            inProgress: true,
         }
         //GameLogic.startGame(10,10,10)
     }
@@ -40,12 +41,27 @@ class MainPageContainer extends React.Component {
     onNewGame = () => {
         const {width, height, mines, gameboard} = this.state;
         //TODO: add validation not empty
-        this.setState({gameboard: new GameBoard(width, height, mines)})
+        this.setState({
+            gameboard: new GameBoard(width, height, mines),
+            inProgress: true,
+        })
     }
 
     onTileClick = (i, j) => {
-        this.state.gameboard.clickTile(i,j);
-        this.forceUpdate();
+        if(this.state.inProgress) {
+            const {gameboard} = this.state;
+            gameboard.clickTile(i, j);
+            this.forceUpdate();
+
+            if(gameboard.boardData.isMineClicked){
+                setTimeout(()=>alert('You lose, better luck next time'),0);
+                this.setState({inProgress: false});
+            }
+            else if(gameboard.options.mines === gameboard.boardData.tilesLeft){
+                setTimeout(()=>alert('Congratulations you win'),0);
+                this.setState({inProgress: false})
+            }
+        }
     }
 
     render() {
