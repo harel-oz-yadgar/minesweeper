@@ -1,14 +1,10 @@
 import React from 'react';
 
-import dangerFlag from '../../Resources/danger-flag.png';
-import bomb from '../../Resources/bomb.jpg';
-import './Board.scss'
+import Tile from './Tile/Tile.component';
+import './Board.scss';
 
 
 const Board = ({board, onTileClick}) => {
-
-    console.log("look at me" , board)
-
     const renderTableBody = () => {
         return (
             <tbody>
@@ -26,7 +22,14 @@ const Board = ({board, onTileClick}) => {
                     row.map((tile, colIndex) => {
                         return (
                             <td key={`tile#r${rowIndex}c${colIndex}`}>
-                                {renderTile(tile)}
+                                <Tile i={tile.i}
+                                      j={tile.j}
+                                      onClick={()=>onTileClick(tile.i, tile.j)}
+                                      isVisiable={tile.isVisiable}
+                                      isFlagged={tile.isMine}
+                                      isMine={tile.isMine}
+                                      numOfMines={tile.numOfMines}
+                                />
                             </td>
                         )
                     })
@@ -35,29 +38,11 @@ const Board = ({board, onTileClick}) => {
         )
     };
 
-    const renderTile = (tile, onTileClick) => {
-        console.log(tile)
-        return (
-            <button className='tile'>
-                {
-                    !tile.isVisiable ? '' :
-                        tile.isFlagged ? (
-                            <img src={dangerFlag} alt='F' />
-                        ) : (
-                            tile.isMine ? (
-                                <img src={bomb} alt='*' />
-                            ) : (
-                                tile.numOfMines===0 ? '' : tile.numOfMines
-                            )
-                        )
-                }
-            </button>
-        )
-    }
+
 
     return (
-        <div>
-            <table className='table'>
+        <div className='gameboard-container'>
+            <table className='gameboard'>
                 {renderTableBody()}
             </table>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MainPage from './MainPage.component';
-import GameLogic from '../../GameLogic/Logic';
+import GameBoard from '../../GameLogic/Logic';
 
 
 class MainPageContainer extends React.Component {
@@ -11,9 +11,9 @@ class MainPageContainer extends React.Component {
             width: 10,
             height: 10,
             mines: 10,
-            GameLogic: GameLogic
+            gameboard: new GameBoard(10,10,10),
         }
-        GameLogic.startGame(10,10,10)
+        //GameLogic.startGame(10,10,10)
     }
 
     onOptionChange = (key, value, min, max) => {
@@ -38,16 +38,20 @@ class MainPageContainer extends React.Component {
     }
 
     onNewGame = () => {
-        const {width, height, mines, GameLogic} = this.state;
+        const {width, height, mines, gameboard} = this.state;
         //TODO: add validation not empty
-        GameLogic.startGame(width, height, mines);
+        this.setState({gameboard: new GameBoard(width, height, mines)})
+    }
+
+    onTileClick = (i, j) => {
+        this.state.gameboard.clickTile(i,j);
+        this.forceUpdate();
     }
 
     render() {
-        console.log('rerender', this.state.GameLogic)
-        const {width, height, mines} = this.state;
+        const {width, height, mines, gameboard} = this.state;
         return(
-            <MainPage board={this.state.GameLogic.boardData.board}
+            <MainPage board={gameboard.boardData.board}
                       onNewGame={this.onNewGame}
                       width={width}
                       onWidthChange={(value)=>this.onOptionChange('width', value, 1, 300)}
@@ -55,6 +59,7 @@ class MainPageContainer extends React.Component {
                       onHeightChange={(value)=>this.onOptionChange('height', value, 1, 300)}
                       mines={mines}
                       onMinesChange={(value)=>this.onOptionChange('mines', value, 0, this.state.width*this.state.height)}
+                      onTileClick={this.onTileClick}
             />
         );
     }

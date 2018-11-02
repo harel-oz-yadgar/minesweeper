@@ -1,16 +1,29 @@
-.table{
-  border: 2px solid black;
-  border-radius: 10px;
-  background-color: lightgrey;
+.gameboard-container{
+  display: flex;
+  justify-content: center;
 
-  .tile{
-    padding: 0px;
-    width: 30px;
-    height: 30px;
+  .gameboard{
+    width: 100%;
 
-    img{
-      width: 100%;
-      height: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: lightgrey;
+
+    .tile{
+      font-weight: bold;
+      padding: 0px;
+      width: 30px;
+      height: 30px;
+
+      &.clicked{
+        color: black;
+        background-color: lightgrey;
+      }
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
