@@ -36,7 +36,7 @@ const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, on
                     />
                 </div>
             </div>
-            <div>
+            <div className='flags-left'>
                 Flags left: {flagsLeft}
             </div>
             <div>

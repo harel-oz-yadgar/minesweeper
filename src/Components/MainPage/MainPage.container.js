@@ -52,7 +52,7 @@ class MainPageContainer extends React.Component {
         }
 
         const {gameboard} = this.state;
-        if (e.shiftKey) {//flag
+        if (e.shiftKey) {
             gameboard.flagTile(i, j);
         }
         else {
@@ -61,11 +61,11 @@ class MainPageContainer extends React.Component {
 
         this.forceUpdate();
         if (gameboard.boardData.isMineClicked) {
-            setTimeout(() => alert('You lose, better luck next time'), 0);
+            setTimeout(() => alert('You lose, better luck next time'), 100);
             this.setState({inProgress: false});
         }
         else if (gameboard.options.mines === gameboard.boardData.tilesLeft) {
-            setTimeout(() => alert('Congratulations you win'), 0);
+            setTimeout(() => alert('Congratulations you win'), 100);
             this.setState({inProgress: false})
         }
     }
