@@ -1,4 +1,6 @@
 .command-panel{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 
   .game-options{
     display: flex;
@@ -22,6 +24,7 @@
   .new-game{
     display: flex;
     justify-content: center;
+    margin-top: 10px;
     margin-bottom: 10px;
 
     .new-game-btn {

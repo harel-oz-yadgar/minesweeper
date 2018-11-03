@@ -4,17 +4,7 @@ import Tile from './Tile/Tile.component';
 import './Board.scss';
 
 
-const Board = ({board, onTileClick}) => {
-    const renderTableBody = () => {
-        return (
-            <React.Fragments>
-            {
-                board.map((row, index) => renderTableRow(row, index))
-            }
-            </React.Fragments>
-        );
-    };
-
+const Board = ({board, onTileClick, isSuperman}) => {
     const renderTableRow = (row, rowIndex) => {
         return (
             <div key={`row#${rowIndex}`} className='row'>
@@ -29,6 +19,7 @@ const Board = ({board, onTileClick}) => {
                                       isMine={tile.isMine}
                                       numOfMines={tile.numOfMines}
                                       key={`tile#r${rowIndex}c${colIndex}`}
+                                      isSuperman={isSuperman}
                                 />
                         )
                     })

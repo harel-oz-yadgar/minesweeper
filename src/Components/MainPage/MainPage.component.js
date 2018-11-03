@@ -4,7 +4,7 @@ import Board from '../Board/Board.component';
 import './MainPage.scss';
 
 
-const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange, onTileClick}) => {
+const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, onHeightChange, mines, onMinesChange, onTileClick, isSuperman, onModeChange}) => {
     const renderTextArea = (text, onChange, value) => {
         return (
             <div className='option'>
@@ -24,9 +24,12 @@ const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, on
         <div>
             <div className='command-panel'>
                 <div className='game-options'>
-                    {renderTextArea('width', onWidthChange, width)}
-                    {renderTextArea('height', onHeightChange, height)}
-                    {renderTextArea('mines', onMinesChange, mines)}
+                    {renderTextArea('Width', onWidthChange, width)}
+                    {renderTextArea('Height', onHeightChange, height)}
+                    {renderTextArea('Mines', onMinesChange, mines)}
+                </div>
+                <div>
+                    Superman Mode:  <input type="checkbox" checked={isSuperman} onChange={onModeChange}/>
                 </div>
                 <div className='new-game'>
                     <input type="button"
@@ -42,6 +45,7 @@ const MainPage = ({board, flagsLeft, onNewGame, width, onWidthChange, height, on
             <div>
                 <Board board={board}
                        onTileClick={onTileClick}
+                       isSuperman={isSuperman}
                 />
             </div>
         </div>

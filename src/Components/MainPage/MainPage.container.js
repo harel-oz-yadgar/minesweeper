@@ -13,6 +13,7 @@ class MainPageContainer extends React.Component {
             mines: 10,
             gameboard: new GameBoard(10,10,10),
             inProgress: true,
+            superMode: false,
         }
     }
 
@@ -70,6 +71,10 @@ class MainPageContainer extends React.Component {
         }
     }
 
+    onModeChange = () => {
+        this.setState({superMode: !this.state.superMode});
+    }
+
     render() {
         const {width, height, mines, gameboard} = this.state;
         return(
@@ -83,6 +88,8 @@ class MainPageContainer extends React.Component {
                       mines={mines}
                       onMinesChange={(value)=>this.onOptionChange('mines', value, 0, this.state.width*this.state.height)}
                       onTileClick={this.onTileClick}
+                      onModeChange={this.onModeChange}
+                      isSuperman={this.state.superMode}
             />
         );
     }
